@@ -1,3 +1,7 @@
+"""
+selenium will use chromedriver to open a chrome instance and execute the request defined
+if a chrome browser is opened, the basic functionality of selenium and chromedriver is fine.
+"""
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
