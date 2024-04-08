@@ -96,6 +96,7 @@ headers = {
     # 'Cache-Control':'max-age=0',
     # 'Connection':'keep-alive',
     # 'Sec-Ch-Ua':'"Microsoft Edge";v="123", "Not:A-Brand";v="8", "Chromium";v="123"',
+    # 'Cookie': 'bdsearchUnlogin=0; kunlunFlag=1; BIDUPSID=E372911FE493AC928F21E37428317842; PSTM=1696645730; BAIDUID=E372911FE493AC92FBF1ADD1776BABDE:FG=1; BAIDUID_BFESS=E372911FE493AC92FBF1ADD1776BABDE:FG=1; BDUSS=lMxWHFXREF3NFFNbHJZdWhyLU1sWE5ST29XQzB4Q2ZqRlRUWlpWWThsTjdZa3RsRVFBQUFBJCQAAAAAAAAAAAEAAACTVWEC1ebU1wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHvVI2V71SNld; BDUSS_BFESS=lMxWHFXREF3NFFNbHJZdWhyLU1sWE5ST29XQzB4Q2ZqRlRUWlpWWThsTjdZa3RsRVFBQUFBJCQAAAAAAAAAAAEAAACTVWEC1ebU1wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHvVI2V71SNld; H_PS_PSSID=40080_40369_40378_40415_40303_40458_40456_39662_40512_40445_60040_60029_60034_60046_40510; H_WISE_SIDS=40080_40369_40378_40415_40303_40458_40456_39662_40512_40445_60040_60029_60034_60046_40510; BCLID_BFESS=11231803714649917015; BDSFRCVID=y08OJeC62REShrotWtYl7NBhKsgCY77TH6aoLEWGBVXEnDI3f5LoEG0PNM8g0K4b6jBUogKKL2OTHm_F_2uxOjjg8UtVJeC6EG0Ptf8g0x5; BDSFRCVID_BFESS=y08OJeC62REShrotWtYl7NBhKsgCY77TH6aoLEWGBVXEnDI3f5LoEG0PNM8g0K4b6jBUogKKL2OTHm_F_2uxOjjg8UtVJeC6EG0Ptf8g0x5; H_BDCLCKID_SF=tbC8VCD5JC83eJjR2tvq-JDHqx5Ka43tHD7yWCvXtIncOR5Jj65CQqtJKxnJLb3kanvw5Jnc-b3ToD063MA--t4TQJJx3q5v3CoRaCODJlRosq0x0MTYe-bQyNOattTGQCOMahv1tq7xOb63QlPK5JkgMx6MqpQJQeQ-5KQN3KJmfbL9bT3WjjISKx-_tj_qJRTP; H_BDCLCKID_SF_BFESS=tbC8VCD5JC83eJjR2tvq-JDHqx5Ka43tHD7yWCvXtIncOR5Jj65CQqtJKxnJLb3kanvw5Jnc-b3ToD063MA--t4TQJJx3q5v3CoRaCODJlRosq0x0MTYe-bQyNOattTGQCOMahv1tq7xOb63QlPK5JkgMx6MqpQJQeQ-5KQN3KJmfbL9bT3WjjISKx-_tj_qJRTP; H_WISE_SIDS_BFESS=40080_40369_40378_40415_40303_40458_40456_39662_40512_40445_60040_60029_60034_60046_40510; ZFY=E:BcKzXJ4wb06sdgxHe0s2ISe1f2nN:BH6nMT3eTgPeuw:C; ZD_ENTRY=baidu; delPer=0; PSINO=7; BA_HECTOR=2h8l042lag840401a42h8l2g2gela91j15ea91t; BDRCVFR[feWj1Vr5u3D]=I67x6TjHwwYf0; ab_sr=1.0.1_MzdlMWU0NGVkZTUzMzQ0OGY4MTRmZGM1NzIxMDk2MTMyNzFkMGFlNDBlN2RkMTJmZTE0ZTAxMmRhYjQ4MjlhMTQ5ZDM0NDAyOGRjNTNiMWIzYjg5NjQ0Y2Q2Mzc4OGQ3MTg4OTU1YjY3MzJmZWRiYmY4NDFkZGJlNDgxN2I0ZGM0OTFmMmJhN2I2YzI0ZWUyYjAxZWY5N2YwOTc2NWRhYTYxY2M3NmZiYmMzNTVjZGJjZTAyOTY3YTAyNGQ5MWI5',
     'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36 Edg/123.0.0.0'
 }
 
@@ -108,65 +109,66 @@ headers = {
 response = requests.get(url=link, headers=headers)
 response.encoding = 'utf-8'
 html_data = response.text
-print(html_data)
-# json_data = json.loads(re.findall('var pageData = (.*?);', html_data)[0])
-# pprint(json_data)
-# for j in json_data['aggInfo']['docList']:
-#     name = j['title']  # 名字
-#     score = j['score'] # 评分
-#     viewCount = j['viewCount'] # 阅读量
-#     downloadCount = j['downloadCount'] # 下载量
-#     docId = j['docId'] # 数据包ID
-#     """
-#     1. 发送请求, 模拟浏览器对于url地址发送请求
-#          - 长链接, 可以分段写
-#             问号前面: url链接
-#             问号后面: 请求参数/查询参数
-#     """
-#     # 确定请求链接，这是经过 network 分析得到的链接，从 devtool 找到资源链接和 payload 中的请求参数
-#     url = 'https://wenku.baidu.com/gsearch/rec/pcviewdocrec'
-#     # 请求参数
-#     data = {
-#         'docId': docId,
-#         'query': name,
-#         'recPositions': ''
-#     }
-#     # 请求头
-#     headers = {
-#        'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'
-#     }
-#     #发送请求
-#     response = requests.get(url=url, params=data, headers=headers)
-#     # <Response [200]> 响应对象, 200 表示请求成功
-#     print(response)
-#     """
-#     2. 获取数据, 获取服务器返回响应数据
-#         开发者工具: response
-#         response.json() 获取响应json字典数据, 但是返回数据必须是完整json数据格式 花括号 {}
-#         response.text 获取响应文本数据, 返回字符串  任何时候都可以, 但是基本获取网页源代码的时候
-#         response.content 获取响应二进制数据, 返回字节 保存图片/音频/视频/特定格式文件
+# print(html_data)
+# json str --> json dict
+json_data = json.loads(re.findall('var pageData = (.*?);', html_data)[0])
+pprint(json_data)
+for j in json_data['aggInfo']['docList']:
+    name = j['title']  # 名字
+    score = j['score'] # 评分
+    viewCount = j['viewCount'] # 阅读量
+    downloadCount = j['downloadCount'] # 下载量
+    docId = j['docId'] # 数据包ID
+    """
+    1. 发送请求, 模拟浏览器对于url地址发送请求
+         - 长链接, 可以分段写
+            问号前面: url链接
+            问号后面: 请求参数/查询参数
+    """
+    # 确定请求链接，这是经过 network 分析得到的链接，从 devtool 找到资源链接和 payload 中的请求参数
+    url = 'https://wenku.baidu.com/gsearch/rec/pcviewdocrec'
+    # 请求参数
+    data = {
+        'docId': docId,
+        'query': name,
+        'recPositions': ''
+    }
+    # 请求头
+    headers = {
+       'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'
+    }
+    #发送请求
+    response = requests.get(url=url, params=data, headers=headers)
+    # <Response [200]> 响应对象, 200 表示请求成功
+    print(response)
+    """
+    2. 获取数据, 获取服务器返回响应数据
+        开发者工具: response
+        response.json() 获取响应json字典数据, 但是返回数据必须是完整json数据格式 花括号 {}
+        response.text 获取响应文本数据, 返回字符串  任何时候都可以, 但是基本获取网页源代码的时候
+        response.content 获取响应二进制数据, 返回字节 保存图片/音频/视频/特定格式文件
     
-#     print(response.json())  打印字典数据, 呈现一行
-#     pprint(response.json()) 打印字典数据, 呈现多行, 展开效果
-#     3. 解析数据, 提取图片链接地址
-#         字典取值: 键值对 根据冒号左边内容[键], 提取冒号右边的内容[值]
-#     """
-#     # 定义文件名 整型
-#     num = 1
-#     # for循环遍历, 把列表里面元素一个一个提取出来
-#     # 这里的 json 格式从浏览器发送请求得到的相应中都能得到
-#     for index in response.json()['data']['relateDoc']:
-#         # index 字典呀
-#         pic = index['pic']
-#         print(pic)
-#         # # 4. 保存数据  发送请求 + 获取数据 二进制数据内容
-#         # img_content = requests.get(url=pic, headers=headers).content
-#         # # 'img\\'<文件夹名字> + str(num)<文件名> + '.jpg'<文件后缀>  mode='wb' 保存方式, 二进制保存
-#         # # str(num) 强制转换成 字符串
-#         # # '图片\\' 相对路径, 相对于你代码的路径 你代码在那个地方, 那个代码所在地方图片文件夹
-#         # with open('图片\\' + str(num) + '.jpg', mode='wb') as f:
-#         #     # 写入数据 保存数据  把图片二进制数据保存
-#         #     f.write(img_content)
-#         # # 每次循环 + 1
-#         # print(num)
-#         # num += 1
+    print(response.json())  打印字典数据, 呈现一行
+    pprint(response.json()) 打印字典数据, 呈现多行, 展开效果
+    3. 解析数据, 提取图片链接地址
+        字典取值: 键值对 根据冒号左边内容[键], 提取冒号右边的内容[值]
+    """
+    # 定义文件名 整型
+    num = 1
+    # for循环遍历, 把列表里面元素一个一个提取出来
+    # 这里的 json 格式从浏览器发送请求得到的相应中都能得到
+    for index in response.json()['data']['relateDoc']:
+        # index 字典呀
+        pic = index['pic']
+        print(pic)
+        # # 4. 保存数据  发送请求 + 获取数据 二进制数据内容
+        # img_content = requests.get(url=pic, headers=headers).content
+        # # 'img\\'<文件夹名字> + str(num)<文件名> + '.jpg'<文件后缀>  mode='wb' 保存方式, 二进制保存
+        # # str(num) 强制转换成 字符串
+        # # '图片\\' 相对路径, 相对于你代码的路径 你代码在那个地方, 那个代码所在地方图片文件夹
+        # with open('图片\\' + str(num) + '.jpg', mode='wb') as f:
+        #     # 写入数据 保存数据  把图片二进制数据保存
+        #     f.write(img_content)
+        # # 每次循环 + 1
+        # print(num)
+        # num += 1

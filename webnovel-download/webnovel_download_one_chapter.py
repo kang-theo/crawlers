@@ -16,6 +16,7 @@ headers = {
 # response = requests.get(url)
 response = requests.get(url=url, headers = headers)
 # response.encoding = 'utf-8'  # garbled characters
+# response.encoding = response.apparent_encoding # convert to utf-8
 # print(response.text)
 
 # 2. Parse html
