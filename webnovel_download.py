@@ -23,27 +23,35 @@ Parse HTML:
 - css selector: parse based on labels and attributes
 - xpath node extraction: parse based on node labels
 """
-# # regular expression
-# # extract title
-# pattern = '<span class="j_chapIdx">(.*?)</span> <span class="j_chapName">(.*?)</span>'
-# title_list = re.findall(pattern, response.text)
-# title = ' '.join(title_list[0])
-# print(title)
+# regular expression
+# extract title
+pattern = '<span class="j_chapIdx">(.*?)</span> <span class="j_chapName">(.*?)</span>'
+title_list = re.findall(pattern, response.text)
+title = ' '.join(title_list[0])
+print(title)
 
-# # extract content
-# pattern = r'\\<p\\>(.*?)\\<\\/p\\>'
-# content_list = re.findall(pattern, response.text)
-# content_list_sanitized = [content.replace('\\', '') for content in content_list]
-# # delete * and thereafter items from list
-# del content_list_sanitized[content_list_sanitized.index('*'):]
-# content = '\n'.join(content_list_sanitized)
+# extract content
+pattern = r'\\<p\\>(.*?)\\<\\/p\\>'
+content_list = re.findall(pattern, response.text)
+content_list_sanitized = [content.replace('\\', '') for content in content_list]
+# delete * and thereafter items from list
+del content_list_sanitized[content_list_sanitized.index('*'):]
+content = '\n'.join(content_list_sanitized)
+print(content)
+
+
+# # css selector
+# Issue: this does not work for webnovel.com
+# selector = parsel.Selector(response.text)
+# # css and xpath are copied from devtool
+# title = selector.css('h1.dib.mb0.fw700.fs24.lh1\.5::text').get()
+# content = selector.xpath('//*[@id="page"]/div[1]/div[2]/div/div[4]/div[1]/div[1]/div/p/text').getall()
+# print(title)
 # print(content)
 
-
-# css selector
-selector = parsel.Selector(response.text)
-# css and xpath are copied from devtool
-title = selector.css('h1.dib.mb0.fw700.fs24.lh1\.5::text').get()
-content = selector.xpath('//*[@id="page"]/div[1]/div[2]/div/div[4]/div[1]/div[1]/div/p/text').getall()
-print(title)
-print(content)
+# store data
+with open(title + '.txt', mode='a', encoding='utf-8') as f:
+  f.write(title)
+  f.write('\n')
+  f.write(content)
+  f.write('\n')
